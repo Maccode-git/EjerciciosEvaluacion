@@ -1,0 +1,26 @@
+import java.util.ArrayList;
+public class PangramChecker {
+  public boolean check(String sentence){
+      char[] arrayChar = sentence.toLowerCase().toCharArray();
+  		ArrayList<Character> lstAbcedario =new ArrayList<Character>();
+  		int intA = (int)'a';
+  		int intZ = (int)'z';
+  		boolean salida = true;
+  		
+  		for (int i = intA; i <= intZ; i++) {
+  			lstAbcedario.add((char)i);
+  		}
+  		
+  		
+  		for (int i = 0; i <= arrayChar.length -1; i++) {
+  			if (lstAbcedario.indexOf(arrayChar[i]) != -1 ) {
+  				lstAbcedario.remove(lstAbcedario.indexOf(arrayChar[i]));
+  			}
+  		}
+  		
+  		if(lstAbcedario.size() > 0)
+  			salida = false;
+      
+      return salida;
+  }
+}

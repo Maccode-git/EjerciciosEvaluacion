@@ -1,0 +1,46 @@
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.LinkedList;
+import java.util.Comparator;
+
+
+public class WeightSort {
+	public String PesoOld;public int 	 PesoNew;
+	
+	public WeightSort() {}
+	
+	public String getPesoOld() {
+		return this.PesoOld;
+	}
+	
+	public int getPesoNew() {
+		return this.PesoNew;
+	}
+  
+	public static String orderWeight(String strng) {
+		String salida = "";
+		String[] arrayStr = strng.split(" ");
+		LinkedList<WeightSort> lstOrganizar = new LinkedList<WeightSort>();
+		
+		for (int i = 0; i <= arrayStr.length -1; i++) {
+			char[] arrayChar = arrayStr[i].toCharArray();
+      WeightSort m = new WeightSort();
+			int peso = 0;
+			for (int j = 0; j <= arrayChar.length -1; j++) {
+				peso += Integer.parseInt(String.valueOf(arrayChar[j]));
+			}
+			m.PesoOld = arrayStr[i];m.PesoNew = peso;lstOrganizar.add(m);
+			
+		}
+	
+		Collections.sort(lstOrganizar,Comparator.comparing(WeightSort::getPesoNew).
+                thenComparing(WeightSort::getPesoOld));
+		
+		for (WeightSort organizar : lstOrganizar) {
+			salida += organizar.getPesoOld() + " ";
+		}
+    salida = salida.substring(0,salida.length()-1);
+		
+		return salida;
+	}
+}
